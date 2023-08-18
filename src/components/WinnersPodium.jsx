@@ -21,6 +21,15 @@ const StyledPodiumContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 1rem;
+
+  .header {
+    margin-bottom: 0.5rem;
+  }
+
+  .footer {
+    margin-top: 0.5rem;
+    width: 100%;
+  }
 `;
 
 const StyledPodium = styled.div`
@@ -30,6 +39,8 @@ const StyledPodium = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: ${(props) => props.width}px;
+    overflow-x: hidden;
   }
   .front {
     width: ${(props) => props.width}px;
@@ -73,6 +84,11 @@ const StyledPodium = styled.div`
       ${(props) => props.background_top};
     border-right: ${(props) => props.top_view_side_length}px solid transparent;
   }
+
+  .player {
+    position: relative;
+    bottom: ${(props) => (props?.is3d ? -(props.top_height - 6) + "px" : "")};
+  }
 `;
 
 const WinnersPodium = ({ options }) => {
@@ -90,17 +106,17 @@ const WinnersPodium = ({ options }) => {
 
   const height = podiumHeight || 70;
   const width = container?.style?.width / 3 || podiumWidth || 100;
-  const background = backgroundColor;
-  const backgroundTop = convertOpacity(backgroundColor);
+  const background = backgroundColor || "rgb(2 193 189)";
+  const backgroundTop = convertOpacity(background);
   const topViewSideLength = width / 4;
   const topHeight = topViewHeight || 30;
 
   return (
     <StyledPodiumContainer
-      style={container.style}
-      className={container.className}
+      style={container?.style}
+      className={container?.className}
     >
-      {header && <div>{header}</div>}
+      {header && <div className="header">{header}</div>}
       <StyledPodium
         height={height}
         width={width}
@@ -108,24 +124,25 @@ const WinnersPodium = ({ options }) => {
         background_top={backgroundTop}
         top_view_side_length={topViewSideLength}
         top_height={topHeight}
+        is3d={is3D}
       >
         <div className="pod">
-          <div>{winners.rank2}</div>
+          {winners?.rank2 && <div className="player">{winners.rank2}</div>}
           {is3D && <div className="rank-2-top"></div>}
           <div className="front rank-2">2</div>
         </div>
         <div className="pod">
-          <div> {winners.rank1}</div>
+          {winners?.rank1 && <div className="player"> {winners.rank1}</div>}
           {is3D && <div className="rank-1-top"></div>}
           <div className="front rank-1">1</div>
         </div>
         <div className="pod">
-          <div> {winners.rank3}</div>
+          {winners?.rank3 && <div className="player"> {winners.rank3}</div>}
           {is3D && <div className="rank-3-top"></div>}
           <div className="front rank-3">3</div>
         </div>
       </StyledPodium>
-      {footer && <div style={{ width: "100%" }}>{footer}</div>}
+      {footer && <div className="footer">{footer}</div>}
     </StyledPodiumContainer>
   );
 };

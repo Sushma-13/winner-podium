@@ -1,7 +1,7 @@
 {
   "name": "winner-podium",
   "private": false,
-  "version": "0.0.1",
+  "version": "1.0.0",
   "type": "module",
   "main": "./dist/winners-podium-library.umd.js",
   "module": "./dist/winners-podium-library.es.js",

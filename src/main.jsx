@@ -1,25 +1,28 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
-import {WinnersPodium} from "./components";
+import { WinnersPodium } from "./components";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100vh",
+    }}
+  >
     <WinnersPodium
       options={{
-        container: { style: { border: "1px solid black" }, className: "" },
+        container: {
+          style: {
+            color: "white",
+          },
+        },
         podiumHeight: 70,
         podiumWidth: 200,
         backgroundColor: "rgb(2 193 189)",
         is3D: true,
         topViewHeight: 30,
-        header: <h1>This is a winner Podium</h1>,
-        footer: <h4>Description</h4>,
-        winners: {
-          rank1: <h4>Name-1</h4>,
-          rank2: <h4>Name-2</h4>,
-          rank3: <h4>Name-3</h4>,
-        },
       }}
     />
-  </React.StrictMode>
+  </div>
 );
