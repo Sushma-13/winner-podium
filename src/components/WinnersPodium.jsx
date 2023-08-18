@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-function convertOpacity(inputColor) {
+const convertOpacity = (inputColor) => {
   const parts = inputColor.split(" / ");
   const colorPart = parts[0];
   const rgbValues = colorPart.match(/\d+/g);
@@ -14,7 +14,7 @@ function convertOpacity(inputColor) {
   } else {
     return "Invalid input color format";
   }
-}
+};
 
 const StyledPodiumContainer = styled.div`
   display: inline-flex;
@@ -56,30 +56,26 @@ const StyledPodium = styled.div`
     width: ${(props) => props.width - 2 * props.top_view_side_length}px;
     border-bottom: ${(props) => props.top_height}px solid
       ${(props) => props.background_top};
-    border-left: ${(props) => props.top_view_side_length}px solid
-      transparent;
-    border-right: ${(props) => props.top_view_side_length}px solid
-      transparent;
+    border-left: ${(props) => props.top_view_side_length}px solid transparent;
+    border-right: ${(props) => props.top_view_side_length}px solid transparent;
   }
 
   .rank-2-top {
     width: ${(props) => props.width - props.top_view_side_length}px;
     border-bottom: ${(props) => props.top_height}px solid
       ${(props) => props.background_top};
-    border-left: ${(props) => props.top_view_side_length}px solid
-      transparent;
+    border-left: ${(props) => props.top_view_side_length}px solid transparent;
   }
 
   .rank-3-top {
     width: ${(props) => props.width - props.top_view_side_length}px;
     border-bottom: ${(props) => props.top_height}px solid
       ${(props) => props.background_top};
-    border-right: ${(props) => props.top_view_side_length}px solid
-      transparent;
+    border-right: ${(props) => props.top_view_side_length}px solid transparent;
   }
 `;
 
-const Podium = ({ options }) => {
+const WinnersPodium = ({ options }) => {
   const {
     container,
     winners,
@@ -134,7 +130,7 @@ const Podium = ({ options }) => {
   );
 };
 
-Podium.propTypes = {
+WinnersPodium.propTypes = {
   options: PropTypes.shape({
     container: PropTypes.shape({
       style: PropTypes.object,
@@ -155,4 +151,4 @@ Podium.propTypes = {
   }).isRequired,
 };
 
-export default Podium;
+export default WinnersPodium;

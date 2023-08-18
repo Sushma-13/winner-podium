@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Podium from "./App.jsx";
+import {WinnersPodium} from "./components";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Podium
+    <WinnersPodium
       options={{
         container: { style: { border: "1px solid black" }, className: "" },
         podiumHeight: 70,
